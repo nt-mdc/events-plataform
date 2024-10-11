@@ -1,5 +1,3 @@
-# Event Management API
-
 ![Event Management](public/img/banner.png)
 
 This is a Laravel-based API for managing events, attendees, and registrations. It provides functionalities for user authentication, event retrieval, and managing conference registrations.
@@ -21,12 +19,12 @@ http://your-app-url/docs
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/nt-mdc/event-management-api.git
+   git clone https://github.com/nt-mdc/events-plataform.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd event-management-api
+   cd events-plataform
    ```
 
 3. Install PHP dependencies:

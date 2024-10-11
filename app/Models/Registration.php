@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Registration extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
 
     public function tickets(){
@@ -16,6 +15,11 @@ class Registration extends Model
     }
 
     public function conferences(){
-        return $this->belongsToMany(Conference::class, "conference_registration", "registration_id", "conference_id");
+        return $this->belongsTo(Conference::class);
+    }
+
+    public function attendee()
+    {
+        return $this->belongsTo(Attendee::class);
     }
 }

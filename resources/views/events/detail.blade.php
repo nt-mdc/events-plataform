@@ -60,6 +60,10 @@
                     </x-secondary-button>
                 </div>
 
+
+                {{-- <div class="block p-6 bg-amber-100 border border-amber-700 rounded-lg shadow">
+                        <h1 class="mb-2 text-xl font-bold tracking-tight text-amber-800">{{$ticket['name']}} - Expired</h1> --}}
+
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-6">
                     @foreach ($event->tickets as $ticket)
                     <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow">
@@ -308,7 +312,7 @@
                                         type="date"
                                         name="ticketDate"
                                         min="{{date('Y-m-d')}}"
-                                        required />
+                                         />
             
                         <x-input-error :messages="$errors->get('ticketDate')" class="mt-2" />
                     </div>
@@ -318,7 +322,7 @@
                         <x-text-input id="ticketNumber" class="block mt-1 w-full"
                                         type="number"
                                         name="ticketNumber"
-                                        required />
+                                         />
             
                         <x-input-error :messages="$errors->get('ticketNumber')" class="mt-2" />
                     </div>

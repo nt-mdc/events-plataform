@@ -9,7 +9,6 @@ class Room extends Model
 {
     use HasFactory;
     protected $fillable = ['channel_id', 'name', 'capacity'];
-    public $timestamps = false;
 
 
     public function conferences(){

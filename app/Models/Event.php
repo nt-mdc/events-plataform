@@ -14,10 +14,13 @@ class Event extends Model
         'date',
         'user_id'
     ];
-    public $timestamps = false;
 
 
     public function tickets() {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function channels() {
+        return $this->hasMany(Channel::class);
     }
 }

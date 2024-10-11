@@ -12,9 +12,15 @@ class Channel extends Model
         "event_id",
         "name"
     ];
-    public $timestamps = false;
 
+    
     public function rooms() {
         return $this->hasMany(Room::class);
     }
+
+    public function event() {
+        return $this->belongsTo(Event::class);
+    }
+
+
 }

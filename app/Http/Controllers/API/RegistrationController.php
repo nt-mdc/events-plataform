@@ -9,8 +9,57 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 
+
+/**
+ * @group Registration management
+ *
+ * This API offers capabilities for attendee registrations to conferences, allowing for ticket validation and tracking of attendance.
+ * Its endpoints facilitate the registration and removal of attendees from events, ensuring smooth management of conference participation.
+ *
+ */
+
 class RegistrationController extends Controller
 {
+
+
+    /**
+     * Register an attendee for a conference.
+     * 
+     * This endpoint allows an authenticated attendee to register for a specific conference using a valid ticket.
+     * 
+     * @authenticated
+     * 
+     * @bodyParam ticket_id int required The ID of the ticket. Example: 1
+     * @bodyParam conference_id int required The ID of the conference. Example: 2
+     * 
+     * @response 201 {
+     *   "message": "Attendee successfully registered to the conference.",
+     *   "registration": {
+     *     "attendee_id": 1,
+     *     "ticket_id": 1,
+     *     "conference_id": 2,
+     *     "created_at": "2024-10-11T10:00:00.000000Z",
+     *     "updated_at": "2024-10-11T10:00:00.000000Z",
+     *     "id": 1
+     *   }
+     * }
+     * 
+     * @response 409 {
+     *   "message": "The attendee is already registered for this conference."
+     * }
+     * 
+     * @response 422 {
+     *   "message": "The ticket is no more available."
+     * }
+     * 
+     * @response 422 {
+     *   "message": "The selected ticket does not belong to the event associated with this conference."
+     * }
+     * 
+     * @response 401 {
+     *   "message": "Unauthenticated."
+     * }
+     */
     public function registerAttendee(Request $request)
     {
         $attendee = $request->user();
@@ -88,6 +137,29 @@ class RegistrationController extends Controller
         ],201);
     }
 
+
+    /**
+     * Remove an attendee's registration for a conference.
+     * 
+     * This endpoint allows an authenticated attendee to remove their registration for a specific conference.
+     * 
+     * @authenticated
+     * 
+     * @bodyParam ticket_id int required The ID of the ticket. Example: 1
+     * @bodyParam conference_id int required The ID of the conference. Example: 2
+     * 
+     * @response 200 {
+     *   "message": "Registration successfully removed."
+     * }
+     * 
+     * @response 404 {
+     *   "message": "Registration not found for this attendee in the specified conference."
+     * }
+     * 
+     * @response 401 {
+     *   "message": "Unauthenticated."
+     * }
+     */
     public function removeRegistration(Request $request)
     {
 

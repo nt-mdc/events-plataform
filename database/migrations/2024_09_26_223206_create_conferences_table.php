@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('conferences', function (Blueprint $table) {
-            $table->id(); // int(11)
-            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade'); // int(11)
+            $table->id();
+            $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade'); 
             $table->string('title', 255);
             $table->mediumText('description');
-            $table->string('speaker', 45);
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->string('speaker');
+            $table->date('date');
+            $table->time('start');
+            $table->time('end');
             $table->enum('type', ['talk', 'workshop']);
             $table->timestamps();
         });

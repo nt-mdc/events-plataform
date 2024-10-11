@@ -9,7 +9,7 @@ class Conference extends Model
 {
     use HasFactory;
     public $table = "conferences";
-    protected $fillable = ['room_id', 'title', 'description', 'speaker', 'start', 'end', 'type'];
+    protected $fillable = ['room_id', 'title', 'description', 'speaker', 'date', 'start', 'end', 'type'];
 
     
     public function registrations(){

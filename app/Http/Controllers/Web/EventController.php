@@ -53,14 +53,8 @@ class EventController extends Controller
                 $channel['conferences'] += count($conferences);
                 $roomConferences = [];
                 foreach ($conferences as $conference){
-                    $conference['startDateUnFormatted'] = $conference->start;
-                    $conference['endDateUnFormatted'] = $conference->end;
-
-                    $startFormatted = new DateTime($conference->start);
-                    $endFormatted = new DateTime($conference->end);
-
-                    $conference->start = $startFormatted->format('H:i');
-                    $conference->end = $endFormatted->format('H:i');
+                    $conference->start = (new DateTime($conference->start))->format('H:i');
+                    $conference->end = (new DateTime($conference->end))->format('H:i');                    
                     $conference->type = ucfirst($conference->type);
                     $conference['channel'] = $channel->name;
                     $conference['room'] = $room->name;

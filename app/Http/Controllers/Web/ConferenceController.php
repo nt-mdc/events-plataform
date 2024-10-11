@@ -10,13 +10,15 @@ class ConferenceController extends Controller
 {
     public function create(Request $request){
         $data = $request->validate([
-            "conferenceTitle" => "required|min:3",
-            "conferenceDescription" => "required|min:25",
+            "eventDate" => "required",
+            "conferenceTitle" => "required|min:3|max:255",
+            "conferenceDescription" => "required|min:25|max:1500",
             "conferenceType" => "required",
             "conferenceSpeaker" => "required|min:3",
             "conferenceRoom" => "required",
-            "conferenceStartDate" => "required|after_or_equal:today",
-            "conferenceEndDate" => "required|after:conferenceStartDate",
+            "conferenceStart" => "required|date_format:H:i",
+            "conferenceEnd" => "required|date_format:H:i|after:conferenceStart",
+            "conferenceDate" => "required|after_or_equal:eventDate",
         ]);
 
         $content = [
@@ -25,8 +27,9 @@ class ConferenceController extends Controller
             "type" => $data["conferenceType"],
             "speaker" => $data["conferenceSpeaker"],
             "room_id" => $data["conferenceRoom"],
-            "start" => $data["conferenceStartDate"],
-            "end" => $data["conferenceEndDate"],
+            "date" => $data["conferenceDate"],
+            "start" => $data["conferenceStart"],
+            "end" => $data["conferenceEnd"],
         ];
 
         $conference = Conference::create($content);
@@ -36,13 +39,15 @@ class ConferenceController extends Controller
 
     public function edit(Request $request, $conferenceId){
         $data = $request->validate([
-            "conferenceTitle" => "required|min:3",
-            "conferenceDescription" => "required|min:25",
+            "eventDate" => "required",
+            "conferenceTitle" => "required|min:3|max:255",
+            "conferenceDescription" => "required|min:25|max:1500",
             "conferenceType" => "required",
             "conferenceSpeaker" => "required|min:3",
             "conferenceRoom" => "required",
-            "conferenceStartDate" => "required|after_or_equal:today",
-            "conferenceEndDate" => "required|after:conferenceStartDate",
+            "conferenceStart" => "required|date_format:H:i",
+            "conferenceEnd" => "required|date_format:H:i|after:conferenceStart",
+            "conferenceDate" => "required|after_or_equal:eventDate",
         ]);
 
         $content = [
@@ -51,9 +56,11 @@ class ConferenceController extends Controller
             "type" => $data["conferenceType"],
             "speaker" => $data["conferenceSpeaker"],
             "room_id" => $data["conferenceRoom"],
-            "start" => $data["conferenceStartDate"],
-            "end" => $data["conferenceEndDate"],
+            "date" => $data["conferenceDate"],
+            "start" => $data["conferenceStart"],
+            "end" => $data["conferenceEnd"],
         ];
+
 
         $conference = Conference::findOrFail($conferenceId);
         $conference->fill($content);

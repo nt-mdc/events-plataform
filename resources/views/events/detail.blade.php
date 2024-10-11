@@ -104,6 +104,7 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="px-6 py-2">Title</th>
+                                <th scope="col" class="px-6 py-2">Date</th>
                                 <th scope="col" class="px-6 py-2">Time</th>
                                 <th scope="col" class="px-6 py-2">Type</th>
                                 <th scope="col" class="px-6 py-2">Speaker</th>
@@ -117,6 +118,9 @@
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {{$conference['title']}}
                                 </th>
+                                <td class="px-6 py-4 text-center">
+                                    {{$conference['date']}}
+                                </td>
                                 <td class="px-6 py-4 text-center">
                                     {{$conference['start']." - ".$conference['end']}}
                                 </td>
@@ -399,29 +403,41 @@
                         </div>
     
                         <div class="mt-4">
-                            <x-input-label for="conferenceStartDate" :value="__('Start Date')" />
-                            <x-text-input id="conferenceStartDate" class="block mt-1 w-full"
-                                            type="datetime-local"
-                                            name="conferenceStartDate"
-                                            min="{{date('Y-m-d\TH:i')}}"
+                            <x-input-label for="conferenceDate" :value="__('Date')" />
+                            <x-text-input id="conferenceDate" class="block mt-1 w-full"
+                                            type="date"
+                                            name="conferenceDate"
+                                            min="{{$event->date}}"
                                             required />
                 
                             <x-input-error :messages="$errors->get('conferenceStartDate')" class="mt-2" />
                         </div>
-                        
+
                         <div class="mt-4">
-                            <x-input-label for="conferenceEndDate" :value="__('End Date')" />
-                            <x-text-input id="conferenceEndDate" class="block mt-1 w-full"
-                                            type="datetime-local"
-                                            name="conferenceEndDate"
-                                            min="{{date('Y-m-d\TH:i')}}"
+                            <x-input-label for="conferenceStart" :value="__('Start')" />
+                            <x-text-input id="conferenceStart" class="block mt-1 w-full"
+                                            type="time"
+                                            name="conferenceStart"
+                                            min="{{date('TH:i')}}"
                                             required />
                 
-                            <x-input-error :messages="$errors->get('conferenceEndDate')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('conferenceStart')" class="mt-2" />
                         </div>
-    
+                        
+                        <div class="mt-4">
+                            <x-input-label for="conferenceEnd" :value="__('End')" />
+                            <x-text-input id="conferenceEnd" class="block mt-1 w-full"
+                                            type="time"
+                                            name="conferenceEnd"
+                                            min="{{date('TH:i')}}"
+                                            required />
+                
+                            <x-input-error :messages="$errors->get('conferenceEnd')" class="mt-2" />
+                        </div>
                     </div>
                     
+                    <input type="hidden" name="eventDate" value="{{$event->date}}">
+
                     <div class="flex justify-end gap-4 mt-5">
                         <x-secondary-button id="conferenceModalCancelBtn">Cancel</x-secondary-button>
                         <x-primary-button>Save</x-primary-button>
@@ -573,8 +589,9 @@
         let conferenceType = document.getElementById("conferenceType");
         let conferenceSpeaker = document.getElementById("conferenceSpeaker");
         let conferenceRoom = document.getElementById("conferenceRoom");
-        let conferenceStartDate = document.getElementById("conferenceStartDate");
-        let conferenceEndDate = document.getElementById("conferenceEndDate");
+        let conferenceDate = document.getElementById("conferenceDate");
+        let conferenceStart = document.getElementById("conferenceStart");
+        let conferenceEnd = document.getElementById("conferenceEnd");
         let conferenceModalCancelBtn = document.getElementById("conferenceModalCancelBtn");
 
 
@@ -758,8 +775,9 @@
             conferenceType.value = "";
             conferenceSpeaker.value = "";
             conferenceRoom.value = "";
-            conferenceStartDate.value = "";
-            conferenceEndDate.value = "";
+            conferenceDate.value = "";
+            conferenceStart.value = "";
+            conferenceEnd.value = "";
             conferenceForm.action = "{{route('conference.create')}}";
             conferenceModalDiv.classList.remove("hidden");
             setTimeout(() => {
@@ -781,8 +799,9 @@
                     conferenceType.value = "";
                     conferenceSpeaker.value = "";
                     conferenceRoom.value = "";
-                    conferenceStartDate.value = "";
-                    conferenceEndDate.value = "";
+                    conferenceDate.value = "";
+                    conferenceStart.value = "";
+                    conferenceEnd.value = "";
 
                     conferenceModalDiv.classList.remove("hidden");
                     setTimeout(() => {
@@ -795,8 +814,9 @@
                     conferenceDescription.value = conference.description;
                     conferenceSpeaker.value = conference.speaker;
                     conferenceRoom.value = conference.room_id;
-                    conferenceStartDate.value = conference.startDateUnFormatted;
-                    conferenceEndDate.value = conference.endDateUnFormatted;
+                    conferenceDate.value = conference.date;
+                    conferenceStart.value = conference.start;
+                    conferenceEnd.value = conference.end;
                     conferenceType.value = conference.type.toLowerCase();
 
                 });

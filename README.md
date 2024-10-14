@@ -9,6 +9,18 @@ This is a Laravel-based API for managing events, attendees, and registrations. I
 - **Registration Management**: Register attendees for conferences and remove registrations.
 - **Organizer Interface**: A Server-Side Rendering (SSR) system that allows organizers to create events, channels, tickets, rooms, and conferences.
 
+## Technologies Used
+
+- **Laravel**: PHP framework for building the backend of the application.
+- **Laravel Sanctum**: Used for API token authentication.
+- **MySQL**: Relational database used for storing application data.
+- **Tailwind CSS**: A utility-first CSS framework for styling the frontend.
+- **Blade**: Laravel’s templating engine for server-side rendering (SSR).
+- **JavaScript/ES6**: Used for client-side logic.
+- **Scribe**: Tool for generating API documentation.
+- **Composer**: Dependency management for PHP.
+- **NPM**: Dependency management for JavaScript and frontend tools.
+
 ## API Documentation
 
 You can find the complete API documentation, including all available endpoints, request parameters, and response formats, at the following URL:

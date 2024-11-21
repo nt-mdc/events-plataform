@@ -15,11 +15,8 @@ This is a Laravel-based API for managing events, attendees, and registrations. I
 - **Laravel Sanctum**: Used for API token authentication.
 - **MySQL**: Relational database used for storing application data.
 - **Tailwind CSS**: A utility-first CSS framework for styling the frontend.
-- **Blade**: Laravel’s templating engine for server-side rendering (SSR).
 - **JavaScript/ES6**: Used for client-side logic.
 - **Scribe**: Tool for generating API documentation.
-- **Composer**: Dependency management for PHP.
-- **NPM**: Dependency management for JavaScript and frontend tools.
 
 ## API Documentation
 
